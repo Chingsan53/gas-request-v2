@@ -92,7 +92,7 @@
   border-style: solid;
   border-color: #9bb0c1;
   border-radius: 10%;
-  height: 200px;
+  height: 320px;
   width: 300px;
   background-color: #9bb0c1;
 }
@@ -101,6 +101,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: auto;
 }
 /* Responsive styles for smaller screens, like iPhone */
 @media (max-width: 600px) {
@@ -109,11 +110,18 @@
     width: 70%; /* Make the width responsive */
     height: auto; /* Adjust height automatically */
     padding: 20px; /* Add some padding for smaller screens */
+    border-radius: 5%;
   }
 
   .logo {
     height: 150px; /* Smaller logo for smaller screens */
     width: 150px;
+  }
+  .input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
   }
 }
 
@@ -147,23 +155,9 @@
   white-space: nowrap;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px;
-  border-style: solid;
-  border-color: #9bb0c1;
-  border-radius: 5%;
-  height: 250px;
-  width: 300px;
-  background-color: #9bb0c1;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.input {
+  width: 100%;
+  padding: 10px 40px;
+  margin: 4px 0;
+  box-sizing: border-box;
 }

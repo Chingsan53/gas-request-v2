@@ -39,6 +39,7 @@ const App = () => {
             <label htmlFor="name">Name</label>
             <input
               type="text"
+              className="input"
               id="name"
               name="name"
               value={firstName}
@@ -47,6 +48,7 @@ const App = () => {
             <label htmlFor="email">Email</label>
             <input
               type="email"
+              className="input"
               id="email"
               name="email"
               value={email}
@@ -55,6 +57,7 @@ const App = () => {
             <label htmlFor="accessCode">Access Code</label>
             <input
               type="accessCode"
+              className="input"
               id="accessCode"
               name="accessCode"
               value={accessCode}
