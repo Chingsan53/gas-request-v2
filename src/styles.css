@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 .main-flex {
@@ -91,7 +92,7 @@
   border: 2px;
   border-style: solid;
   border-color: #9bb0c1;
-  border-radius: 10%;
+  border-radius: 5%;
   height: 320px;
   width: 300px;
   background-color: #9bb0c1;
