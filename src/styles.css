@@ -1,0 +1,169 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 300px;
+  background-color: #9bb0c1;
+  border: 2px;
+  border-style: solid;
+  border-color: #9bb0c1;
+  border-radius: 5%;
+}
+.small-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+}
+.button-7 {
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #344955;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.15385;
+  margin: 6px;
+  outline: none;
+
+  padding: 8px 0.8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.button-7:hover,
+.button-7:focus {
+  background-color: #ff407d;
+}
+
+.button-7:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+}
+
+.button-7:active {
+  background-color: #0064bd;
+  box-shadow: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px;
+  border-style: solid;
+  border-color: #9bb0c1;
+  border-radius: 10%;
+  height: 200px;
+  width: 300px;
+  background-color: #9bb0c1;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* Responsive styles for smaller screens, like iPhone */
+@media (max-width: 600px) {
+  .main-flex,
+  .form {
+    width: 90%; /* Make the width responsive */
+    height: auto; /* Adjust height automatically */
+    padding: 20px; /* Add some padding for smaller screens */
+  }
+
+  .logo {
+    height: 150px; /* Smaller logo for smaller screens */
+    width: 150px;
+  }
+}
+
+/* Remaining styles for button and form */
+.button-7 {
+  /* Your existing styles for .button-7 */
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #344955;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
+    sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.15385;
+  margin: 6px;
+  outline: none;
+
+  padding: 8px 0.8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px;
+  border-style: solid;
+  border-color: #9bb0c1;
+  border-radius: 5%;
+  height: 250px;
+  width: 300px;
+  background-color: #9bb0c1;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
