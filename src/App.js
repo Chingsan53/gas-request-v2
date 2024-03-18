@@ -1,22 +1,35 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 
 const App = () => {
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [accessCode, setAccessCode] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const form = useRef();
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    setShowForm(true);
-    if (showForm) {
-      setShowForm(false);
-    }
+
+    emailjs
+      .sendForm(
+        "service_dl54ugo",
+        "template_gtnk03c",
+        form.current,
+        "myW_exMrmnw4SGeeX"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setIsSubmitted(true);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
-  const printInfo = () => {
-    console.log(firstName, email, accessCode);
+  const handleShow = () => {
+    setShowForm(!showForm);
   };
 
   return (
@@ -27,51 +40,36 @@ const App = () => {
           <div className="title">
             <h2>(SECRET) $1 Off/Gallon</h2>
             <span>Price: FREE</span>
-            <button className="button-7" onClick={handleSubmit}>
+            <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
             </button>
           </div>
         </div>
       </div>
-      {showForm && (
-        <div className="form" onSubmit={(e) => e.preventDefault()}>
+      {showForm && !isSubmitted && (
+        <form className="form" ref={form} onSubmit={sendEmail}>
           <div className="form-container">
             <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              className="input"
-              id="name"
-              name="name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+            <input type="text" className="input" name="name" />
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              className="input"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <input type="email" className="input" id="email" name="email" />
             <label htmlFor="accessCode">Access Code</label>
             <input
               type="accessCode"
               className="input"
               id="accessCode"
               name="accessCode"
-              value={accessCode}
-              onChange={(e) => setAccessCode(e.target.value)}
             />
           </div>
-          <button className="button-7" onClick={printInfo}>
+          <button className="button-7" type="submit">
             SUBMIT
           </button>
           <span>
             *Please use your real email address when submitting the form
           </span>
-        </div>
+        </form>
       )}
+      {isSubmitted && <p>Congratulations! Your form has been submitted.</p>}
     </div>
   );
 };
