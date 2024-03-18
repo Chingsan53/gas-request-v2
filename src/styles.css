@@ -108,7 +108,7 @@
 @media (max-width: 600px) {
   .main-flex,
   .form {
-    width: 70%; /* Make the width responsive */
+    width: 90%; /* Make the width responsive */
     height: auto; /* Adjust height automatically */
     padding: 10px; /* Add some padding for smaller screens */
     border-radius: 5%;
