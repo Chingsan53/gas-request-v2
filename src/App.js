@@ -69,7 +69,12 @@ const App = () => {
           </span>
         </form>
       )}
-      {isSubmitted && <p>Congratulations! Your form has been submitted.</p>}
+      {isSubmitted && (
+        <p>
+          Congratulations! Your form has been submitted. Please refresh the page
+          to make another request
+        </p>
+      )}
     </div>
   );
 };
