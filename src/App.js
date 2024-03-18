@@ -5,6 +5,7 @@ import emailjs from "emailjs-com";
 const App = () => {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // const [showTemplate, setShowTemplate] = useState(false);
   const form = useRef();
 
   const sendEmail = (e) => {

@@ -110,7 +110,7 @@
   .form {
     width: 70%; /* Make the width responsive */
     height: auto; /* Adjust height automatically */
-    padding: 20px; /* Add some padding for smaller screens */
+    padding: 10px; /* Add some padding for smaller screens */
     border-radius: 5%;
   }
 
@@ -119,6 +119,7 @@
     width: 150px;
   }
   .input {
+    font-size: 15px;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -139,10 +140,10 @@
   display: inline-block;
   font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans",
     sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.15385;
-  margin: 6px;
+  margin: 2px;
   outline: none;
 
   padding: 8px 0.8em;
