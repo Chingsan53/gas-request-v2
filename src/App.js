@@ -1,26 +1,49 @@
 import "./styles.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import emailjs from "emailjs-com";
-import jsonData from "./numbers.json";
+// import jsonData from "./numbers.json";
+import {
+  collection,
+  query,
+  where,
+  doc,
+  getDocs,
+  QuerySnapshot,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "./firebaseConfig";
 
 const App = () => {
-  const storedData = localStorage.getItem("dataArray");
-  const initialData = storedData ? JSON.parse(storedData) : jsonData;
-  const [dataArray, setDataArray] = useState(initialData);
+  const [dataArray, setDataArray] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useRef();
 
+  //fetch from firebase
+  useEffect(() => {
+    const fetchData = async () => {
+      const q = query(
+        collection(db, "phoneNumbers"),
+        where("sent", "==", false)
+      );
+      const QuerySnapshot = await getDocs(q);
+      const numbers = QuerySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setDataArray(numbers);
+    };
+
+    fetchData();
+  }, []);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const newDataArray = dataArray.slice(1);
-    setDataArray(newDataArray);
-    localStorage.setItem("dataArray", JSON.stringify(newDataArray));
-
-    if (dataArray.length === 0) {
-      console.log("no more data to send.");
+    if (!selectedItem) {
+      console.log("No item selected for sending.");
       setIsSubmitted(true);
       return;
     }
@@ -28,16 +51,16 @@ const App = () => {
     emailjs
       .sendForm(
         "service_dl54ugo",
-        "template_1kkim8c",
+        "template_gtnk03c",
         form.current,
         "myW_exMrmnw4SGeeX"
       )
       .then(
-        (result) => {
+        async (result) => {
           console.log(result.text);
-          const newDataArray = dataArray.slice(1);
-          setDataArray(newDataArray);
-          localStorage.setItem("dataArray", JSON.stringify(newDataArray));
+
+          const docRef = doc(db, "phoneNumbers", selectedItem.id);
+          await updateDoc(docRef, { sent: true });
           setIsSubmitted(true);
         },
         (error) => {
@@ -47,6 +70,10 @@ const App = () => {
   };
 
   const handleShow = () => {
+    if (dataArray.length > 0) {
+      const item = dataArray[0];
+      setSelectedItem(item);
+    }
     setShowForm(!showForm);
   };
 
