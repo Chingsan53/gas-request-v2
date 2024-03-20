@@ -9,8 +9,6 @@ const App = () => {
   const [dataArray, setDataArray] = useState(initialData);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  //const [dataArray, setDataArray] = useState(jsonData);
-  // const [showTemplate, setShowTemplate] = useState(false);
 
   const form = useRef();
 
