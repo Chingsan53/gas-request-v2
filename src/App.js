@@ -81,7 +81,7 @@ const App = () => {
     <div className="App">
       <div className="main-flex">
         <div className="small-container">
-          <img src="./img/charmander.png" className="logo" alt="logo" />
+          <img src="./img/gas-request.png" className="logo" alt="logo" />
           <div className="title">
             <h2>(SECRET) $1 Off/Gallon</h2>
             <span>Price: FREE</span>
@@ -98,13 +98,13 @@ const App = () => {
             <input type="text" className="input" name="name" />
             <label htmlFor="email">Email</label>
             <input type="email" className="input" id="email" name="email" />
-            <label htmlFor="accessCode">Access Code</label>
+            {/* <label htmlFor="accessCode">Access Code</label>
             <input
               type="accessCode"
               className="input"
               id="accessCode"
               name="accessCode"
-            />
+            /> */}
             <input
               type="hidden"
               name="custom_message"
@@ -115,7 +115,8 @@ const App = () => {
             SUBMIT
           </button>
           <span>
-            *Please use your real email address when submitting the form
+            *Please use your real email address when submitting the form.
+            Otherwise, the reward # can't be sent successfully.
           </span>
         </form>
       )}
