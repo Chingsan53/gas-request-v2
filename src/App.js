@@ -49,7 +49,7 @@ const App = () => {
 
     emailjs
       .sendForm(
-        "service_dl54ugo",
+        "service_p30k3pz",
         "template_gtnk03c",
         form.current,
         "myW_exMrmnw4SGeeX"
