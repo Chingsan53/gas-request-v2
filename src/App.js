@@ -83,7 +83,7 @@ const App = () => {
         <div className="small-container">
           <img src="./img/gas-request.png" className="logo" alt="logo" />
           <div className="title">
-            <h2>(SECRET) $1 Off/Gallon</h2>
+            <h2>COUPON $1 Off/Gallon</h2>
             <span>Price: FREE</span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
