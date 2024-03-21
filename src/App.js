@@ -97,13 +97,6 @@ const App = () => {
             <input type="text" className="input" name="name" />
             <label htmlFor="email">Email</label>
             <input type="email" className="input" id="email" name="email" />
-            {/* <label htmlFor="accessCode">Access Code</label>
-            <input
-              type="accessCode"
-              className="input"
-              id="accessCode"
-              name="accessCode"
-            /> */}
             <input
               type="hidden"
               name="custom_message"
