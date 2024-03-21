@@ -1,7 +1,6 @@
 import "./styles.css";
 import { useState, useRef, useEffect } from "react";
 import emailjs from "emailjs-com";
-// import jsonData from "./numbers.json";
 import {
   collection,
   query,
