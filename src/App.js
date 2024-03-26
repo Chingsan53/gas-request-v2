@@ -115,7 +115,11 @@ const App = () => {
       {isSubmitted && (
         <p>
           Congratulations! Your form has been submitted. Please refresh the page
-          to make another request
+          to make another request.{" "}
+          <span>
+            If you did not receive an email within 2 minutes, please check your
+            spam folder.
+          </span>
         </p>
       )}
     </div>
