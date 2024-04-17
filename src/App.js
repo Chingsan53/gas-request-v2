@@ -93,8 +93,8 @@ const App = () => {
       {showForm && !isSubmitted && (
         <form className="form" ref={form} onSubmit={sendEmail}>
           <div className="form-container">
-            <label htmlFor="name">Name</label>
-            <input type="text" className="input" name="name" />
+            {/* <label htmlFor="name">Name</label>
+            <input type="text" className="input" name="name" /> */}
             <label htmlFor="email">Email</label>
             <input type="email" className="input" id="email" name="email" />
             <input
