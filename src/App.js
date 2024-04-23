@@ -17,6 +17,7 @@ const App = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(true);
 
   const form = useRef();
 
@@ -38,8 +39,25 @@ const App = () => {
     fetchData();
   }, []);
 
+  //User cooldown store in local storage
+  useEffect(() => {
+    const lastSubmissionTime = localStorage.getItem("lastSubmissionTime");
+    if (lastSubmissionTime) {
+      const timeDiff =
+        Date.now() - new Date(parseInt(lastSubmissionTime)).getTime();
+      if (timeDiff < 86400000) {
+        setCanSubmit(false);
+      }
+    }
+  }, []);
+
   const sendEmail = (e) => {
     e.preventDefault();
+
+    if (!canSubmit) {
+      alert("You can only submit one request every 24 hours.");
+      return;
+    }
 
     if (!selectedItem) {
       console.log("No item selected for sending.");
@@ -61,6 +79,8 @@ const App = () => {
           const docRef = doc(db, "phoneNumbers", selectedItem.id);
           await updateDoc(docRef, { sent: true });
           setIsSubmitted(true);
+          localStorage.setItem("lastSubmisstionTime", Date.now().toString());
+          setCanSubmit(false);
         },
         (error) => {
           console.log(error.text);
@@ -90,7 +110,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      {showForm && !isSubmitted && (
+      {showForm && !isSubmitted && canSubmit && (
         <form className="form" ref={form} onSubmit={sendEmail}>
           <div className="form-container">
             {/* <label htmlFor="name">Name</label>
@@ -120,6 +140,12 @@ const App = () => {
             If you did not receive an email within 2 minutes, please check your
             spam folder.
           </span>
+        </p>
+      )}
+      {!canSubmit && (
+        <p>
+          <strong>Warning: </strong>You have submitted a form recently. Please
+          wait 24 hours before submitting again.
         </p>
       )}
     </div>
