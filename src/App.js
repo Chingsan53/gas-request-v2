@@ -79,7 +79,7 @@ const App = () => {
           const docRef = doc(db, "phoneNumbers", selectedItem.id);
           await updateDoc(docRef, { sent: true });
           setIsSubmitted(true);
-          localStorage.setItem("lastSubmisstionTime", Date.now().toString());
+          localStorage.setItem("lastSubmissionTime", Date.now().toString());
           setCanSubmit(false);
         },
         (error) => {
