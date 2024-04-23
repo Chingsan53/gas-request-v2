@@ -142,12 +142,12 @@ const App = () => {
           </span>
         </p>
       )}
-      {/* {!canSubmit && (
+      {!canSubmit && (
         <p>
-          <strong></strong>You have submitted a form recently. Please
-          wait 24 hours before submitting again.
+          <strong></strong>You have submitted a form recently. Please wait 24
+          hours before submitting again.
         </p>
-      )} */}
+      )}
     </div>
   );
 };
