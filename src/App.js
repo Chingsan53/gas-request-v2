@@ -134,20 +134,20 @@ const App = () => {
       )}
       {isSubmitted && (
         <p>
-          Congratulations! Your form has been submitted. Please refresh the page
-          to make another request.{" "}
+          Congratulations! Your form has been submitted. Please kindly request
+          only 1 reward number per 24 hours. Thank you.{" "}
           <span>
             If you did not receive an email within 2 minutes, please check your
             spam folder.
           </span>
         </p>
       )}
-      {!canSubmit && (
+      {/* {!canSubmit && (
         <p>
-          <strong>Warning: </strong>You have submitted a form recently. Please
+          <strong></strong>You have submitted a form recently. Please
           wait 24 hours before submitting again.
         </p>
-      )}
+      )} */}
     </div>
   );
 };
