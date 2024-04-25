@@ -45,7 +45,7 @@ const App = () => {
     if (lastSubmissionTime) {
       const timeDiff =
         Date.now() - new Date(parseInt(lastSubmissionTime)).getTime();
-      if (timeDiff < 86400000) {
+      if (timeDiff < 172800000) {
         setCanSubmit(false);
       }
     }
@@ -135,7 +135,7 @@ const App = () => {
       {isSubmitted && (
         <p>
           Congratulations! Your form has been submitted. Please kindly request
-          only 1 reward number per 24 hours. Thank you.{" "}
+          only 1 reward number per 48 hours. Thank you.{" "}
           <span>
             If you did not receive an email within 2 minutes, please check your
             spam folder.
@@ -144,8 +144,8 @@ const App = () => {
       )}
       {!canSubmit && (
         <p>
-          <strong></strong>You have submitted a form recently. Please wait 24
-          hours before submitting again.
+          <strong></strong>You have submitted a form recently. Please wait 48
+          hours after you last submitted before submitting the form again.
         </p>
       )}
     </div>
