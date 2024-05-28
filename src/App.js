@@ -104,17 +104,18 @@ const App = () => {
           <div className="title">
             <h2>COUPON $1 Off/Gallon</h2>
             <span>Price: FREE</span>
+            <span>
+              Note: All reward # are out of stock. We will restock more # soon.
+            </span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
             </button>
           </div>
         </div>
       </div>
-      {showForm && !isSubmitted && canSubmit && (
+      {/* {showForm && !isSubmitted && canSubmit && (
         <form className="form" ref={form} onSubmit={sendEmail}>
           <div className="form-container">
-            {/* <label htmlFor="name">Name</label>
-            <input type="text" className="input" name="name" /> */}
             <label htmlFor="email">Email</label>
             <input type="email" className="input" id="email" name="email" />
             <input
@@ -131,7 +132,7 @@ const App = () => {
             Otherwise, the reward # can't be sent successfully.
           </span>
         </form>
-      )}
+      )} */}
       {isSubmitted && (
         <p>
           Congratulations! Your form has been submitted. Please kindly request
