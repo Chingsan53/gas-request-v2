@@ -105,7 +105,7 @@ const App = () => {
             <h2>COUPON $1 Off/Gallon</h2>
             <span>Price: FREE</span>
             <span>
-              Note: I will be back soon. I have just been going insane lately. 😁😂
+              Note: I will be back soon. I have just been going insane lately. 🤪
             </span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
