@@ -105,7 +105,8 @@ const App = () => {
             <h2>COUPON $1 Off/Gallon</h2>
             <span>Price: FREE</span>
             <span>
-              Note: I will be back soon. I have just been going insane lately. 🤪
+              Note: Expected to be restocked around June 19, 2024. Please be
+              patient.
             </span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
