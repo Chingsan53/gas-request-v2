@@ -105,8 +105,7 @@ const App = () => {
             <h2>COUPON $1 Off/Gallon</h2>
             <span>Price: FREE</span>
             <span>
-              Note: Expected to be restocked around June 19, 2024. Please be
-              patient.
+              
             </span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
@@ -114,7 +113,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      {/* {showForm && !isSubmitted && canSubmit && (
+      {showForm && !isSubmitted && canSubmit && (
         <form className="form" ref={form} onSubmit={sendEmail}>
           <div className="form-container">
             <label htmlFor="email">Email</label>
@@ -133,7 +132,7 @@ const App = () => {
             Otherwise, the reward # can't be sent successfully.
           </span>
         </form>
-      )} */}
+      )} 
       {isSubmitted && (
         <p>
           Congratulations! Your form has been submitted. Please kindly request
