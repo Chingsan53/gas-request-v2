@@ -18,6 +18,9 @@ const App = () => {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [canSubmit, setCanSubmit] = useState(true);
+  const [accessCode, setAccessCode] = useState("");
+  const [isAccessCodeValid, setIsAccessCodeValid] = useState(false);
+  
 
   const form = useRef();
 
@@ -96,60 +99,83 @@ const App = () => {
     setShowForm(!showForm);
   };
 
+  const handleAccessCodeSubmit = (e) => {
+    e.preventDefault();
+    if (accessCode === "gasbuddy123") {
+      setIsAccessCodeValid(true);
+    } else {
+      alert("Invalid access code. Try again.")
+    }
+  };
+
   return (
     <div className="App">
-      <div className="main-flex">
-        <div className="small-container">
-          <img src="./img/gas-request.png" className="logo" alt="logo" />
-          <div className="title">
-            <h2>COUPON $1 Off/Gallon</h2>
-            <span>
-              Note: You will be banned if we know that you are sharing the access code.
-            </span>
-            <button className="button-7" onClick={handleShow}>
-              {!showForm ? "REQUEST" : "CLOSE"}
-            </button>
-          </div>
-        </div>
-      </div>
-      {showForm && !isSubmitted && canSubmit && (
-        <form className="form" ref={form} onSubmit={sendEmail}>
-          <div className="form-container">
-            <label htmlFor="email">Email</label>
-            <input type="email" className="input" id="email" name="email" />
-            <lable htmlFor="code">Access Code</lable>
-            <input type="code" className="input" id="code" name="code" />
-            <input
-              type="hidden"
-              name="custom_message"
-              value={dataArray.length > 0 ? dataArray[0].number : ""}
-            />
-          </div>
-          <button className="button-7" type="submit">
-            SUBMIT
-          </button>
-          <span>
-            *Please use your real email address when submitting the form.
-            Otherwise, the reward # can't be sent successfully.
-          </span>
+      {!isAccessCodeValid ? (
+        <form className="access-code-form" onSubmit={handleAccessCodeSubmit}>
+          <label htmlFor="accessCode">Enter Access Code: </label>
+          <input
+            type="text"
+            id="accessCode"
+            value={accessCode}
+            onChange={(e) => setAccessCode(e.target.value)}
+          />
+          <button type="submit">Submit</button>
         </form>
-      )} 
-      {isSubmitted && (
-        <p>
-          Congratulations! Your form has been submitted. Please kindly request
-          only 1 reward number per 48 hours. Thank you.{" "}
-          <span>
-            If you don't receive the code in 5 minutes, maybe your access code is incorrect.
-          </span>
-        </p>
-      )}
-      {!canSubmit && (
-        <p>
-          <strong></strong>You have submitted a form recently. Please wait 48
-          hours after you last submitted before submitting the form again. <span>
-            If you don't receive the code in 5 minutes, maybe your access code is incorrect.
-          </span>
-        </p>
+      ) : (
+        <>
+          <div className="main-flex">
+            <div className="small-container">
+              <img src="./img/gas-request.png" className="logo" alt="logo" />
+              <div className="title">
+                <h2>COUPON $1 Off/Gallon</h2>
+                <span>
+                  Note: You will be banned if we know that you are sharing the access code.
+                </span>
+                <button className="button-7" onClick={handleShow}>
+                  {!showForm ? "REQUEST" : "CLOSE"}
+                </button>
+              </div>
+            </div>
+          </div>
+          {showForm && !isSubmitted && canSubmit && (
+            <form className="form" ref={form} onSubmit={sendEmail}>
+              <div className="form-container">
+                <label htmlFor="email">Email</label>
+                <input type="email" className="input" id="email" name="email" />
+                <label htmlFor="code">Access Code</label>
+                <input type="code" className="input" id="code" name="code" />
+                <input
+                  type="hidden"
+                  name="custom_message"
+                  value={dataArray.length > 0 ? dataArray[0].number : ""}
+                />
+              </div>
+              <button className="button-7" type="submit">
+                SUBMIT
+              </button>
+              <span>
+                *Please use your real email address when submitting the form.
+                Otherwise, the reward # can't be sent successfully.
+              </span>
+            </form>
+          )}
+          {isSubmitted && (
+            <p>
+              Congratulations! Your form has been submitted. Please kindly request
+              only 1 reward number per 48 hours. Thank you.{" "}
+              <span>
+                If you don't receive the code in 5 minutes, maybe your access code is incorrect.
+              </span>
+            </p>
+          )}
+          {!canSubmit && (
+            <p>
+              <strong>You have submitted a form recently. Please wait 48 hours after you last submitted before submitting the form again.</strong> <span>
+                If you don't receive the code in 5 minutes, maybe your access code is incorrect.
+              </span>
+            </p>
+          )}
+        </>
       )}
     </div>
   );
