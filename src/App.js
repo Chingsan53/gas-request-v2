@@ -118,6 +118,8 @@ const App = () => {
           <div className="form-container">
             <label htmlFor="email">Email</label>
             <input type="email" className="input" id="email" name="email" />
+            <lable htmlFor="code">Access Code</lable>
+            <input type="code" className="input" id="code" name="code" />
             <input
               type="hidden"
               name="custom_message"
