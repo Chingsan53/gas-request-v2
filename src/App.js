@@ -103,9 +103,8 @@ const App = () => {
           <img src="./img/gas-request.png" className="logo" alt="logo" />
           <div className="title">
             <h2>COUPON $1 Off/Gallon</h2>
-            <span>Price: FREE</span>
             <span>
-              
+              Note: You will be banned if we know that you are sharing the access code.
             </span>
             <button className="button-7" onClick={handleShow}>
               {!showForm ? "REQUEST" : "CLOSE"}
@@ -140,15 +139,16 @@ const App = () => {
           Congratulations! Your form has been submitted. Please kindly request
           only 1 reward number per 48 hours. Thank you.{" "}
           <span>
-            If you did not receive an email within 2 minutes, please check your
-            spam folder.
+            If you don't receive the code in 5 minutes, maybe your access code is incorrect.
           </span>
         </p>
       )}
       {!canSubmit && (
         <p>
           <strong></strong>You have submitted a form recently. Please wait 48
-          hours after you last submitted before submitting the form again.
+          hours after you last submitted before submitting the form again. <span>
+            If you don't receive the code in 5 minutes, maybe your access code is incorrect.
+          </span>
         </p>
       )}
     </div>
