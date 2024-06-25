@@ -36,6 +36,7 @@ const App = () => {
     "menghengchhay@gmail.com",
     "yith11@gmail.com",
     "nickypiseth@gmail.com",
+    "lychingsan123@gmail.com",
   ];
 
   //fetch from firebase
