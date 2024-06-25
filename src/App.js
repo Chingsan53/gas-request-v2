@@ -20,9 +20,17 @@ const App = () => {
   const [canSubmit, setCanSubmit] = useState(true);
   const [accessCode, setAccessCode] = useState("");
   const [isAccessCodeValid, setIsAccessCodeValid] = useState(false);
-  
+  const [email, setEmail] = useState("");
 
   const form = useRef();
+
+  // Lisf of blocked emails
+  const blockedEmails = [
+    "johnathan.ashley@alpha-grid.com",
+    "baxterchen8@aol.com",
+    "skykeller80@gmail.com",
+    "lychingsan567@gmail.com",
+  ];
 
   //fetch from firebase
   useEffect(() => {
@@ -68,6 +76,13 @@ const App = () => {
       return;
     }
 
+    if (blockedEmails.includes(email)) {
+      alert(
+        "You got banned!!! You know why? Because the Dev don't know you personally. 🤣"
+      );
+      return;
+    }
+
     emailjs
       .sendForm(
         "service_p30k3pz",
@@ -99,18 +114,18 @@ const App = () => {
     setShowForm(!showForm);
   };
 
-  const handleAccessCodeSubmit = (e) => {
-    e.preventDefault();
-    if (accessCode === "gasbuddy123") {
-      setIsAccessCodeValid(true);
-    } else {
-      alert("Invalid access code. Try again.")
-    }
-  };
+  // const handleAccessCodeSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (accessCode === "gasbuddy123") {
+  //     setIsAccessCodeValid(true);
+  //   } else {
+  //     alert("Invalid access code. Try again.");
+  //   }
+  // };
 
   return (
     <div className="App">
-      {!isAccessCodeValid ? (
+      {/* {!isAccessCodeValid ? (
         <form className="access-code-form" onSubmit={handleAccessCodeSubmit}>
           <label htmlFor="accessCode">Enter Access Code: </label>
           <input
@@ -121,61 +136,75 @@ const App = () => {
           />
           <button type="submit">Submit</button>
         </form>
-      ) : (
-        <>
-          <div className="main-flex">
-            <div className="small-container">
-              <img src="./img/gas-request.png" className="logo" alt="logo" />
-              <div className="title">
-                <h2>COUPON $1 Off/Gallon</h2>
-                <span>
-                  Note: You will be banned if we know that you are sharing the access code.
-                </span>
-                <button className="button-7" onClick={handleShow}>
-                  {!showForm ? "REQUEST" : "CLOSE"}
-                </button>
-              </div>
+      ) : ( */}
+      <>
+        <div className="main-flex">
+          <div className="small-container">
+            <img src="./img/gas-request.png" className="logo" alt="logo" />
+            <div className="title">
+              <h2>COUPON $1 Off/Gallon</h2>
+              <span>
+                Note: You will be banned if we know that you are sharing the
+                access code.
+              </span>
+              <button className="button-7" onClick={handleShow}>
+                {!showForm ? "REQUEST" : "CLOSE"}
+              </button>
             </div>
           </div>
-          {showForm && !isSubmitted && canSubmit && (
-            <form className="form" ref={form} onSubmit={sendEmail}>
-              <div className="form-container">
-                <label htmlFor="email">Email</label>
-                <input type="email" className="input" id="email" name="email" />
-                
-                <input
-                  type="hidden"
-                  name="custom_message"
-                  value={dataArray.length > 0 ? dataArray[0].number : ""}
-                />
-              </div>
-              <button className="button-7" type="submit">
-                SUBMIT
-              </button>
-              <span>
-                *Please use your real email address when submitting the form.
-                Otherwise, the reward # can't be sent successfully.
-              </span>
-            </form>
-          )}
-          {isSubmitted && (
-            <p>
-              Congratulations! Your form has been submitted. Please kindly request
-              only 1 reward number per 48 hours. Thank you.{" "}
-              <span>
-                If you don't receive the code in 5 minutes, maybe your access code is incorrect.
-              </span>
-            </p>
-          )}
-          {!canSubmit && (
-            <p>
-              <strong>You have submitted a form recently. Please wait 48 hours after you last submitted before submitting the form again.</strong> <span>
-                If you don't receive the code in 5 minutes, maybe your access code is incorrect.
-              </span>
-            </p>
-          )}
-        </>
-      )}
+        </div>
+        {showForm && !isSubmitted && canSubmit && (
+          <form className="form" ref={form} onSubmit={sendEmail}>
+            <div className="form-container">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="input"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <input
+                type="hidden"
+                name="custom_message"
+                value={dataArray.length > 0 ? dataArray[0].number : ""}
+              />
+            </div>
+            <button className="button-7" type="submit">
+              SUBMIT
+            </button>
+            <span>
+              *Please use your real email address when submitting the form.
+              Otherwise, the reward # can't be sent successfully.
+            </span>
+          </form>
+        )}
+        {isSubmitted && (
+          <p>
+            Congratulations! Your form has been submitted. Please kindly request
+            only 1 reward number per 48 hours. Thank you.{" "}
+            <span>
+              If you don't receive the code in 5 minutes, maybe your access code
+              is incorrect.
+            </span>
+          </p>
+        )}
+        {!canSubmit && (
+          <p>
+            <strong>
+              You have submitted a form recently. Please wait 48 hours after you
+              last submitted before submitting the form again.
+            </strong>{" "}
+            <span>
+              If you don't receive the code in 5 minutes, maybe your access code
+              is incorrect.
+            </span>
+          </p>
+        )}
+      </>
+      {/* )} */}
     </div>
   );
 };
