@@ -25,11 +25,17 @@ const App = () => {
   const form = useRef();
 
   // Lisf of blocked emails
-  const blockedEmails = [
-    "johnathan.ashley@alpha-grid.com",
-    "baxterchen8@aol.com",
-    "skykeller80@gmail.com",
+  const allowedEmails = [
+    // "johnathan.ashley@alpha-grid.com",
+    // "baxterchen8@aol.com",
+    // "skykeller80@gmail.com",
     "lychingsan567@gmail.com",
+    "dalivapiseth@gmail.com",
+    "htinaungkyaw486@gmail.com",
+    "menghongchhay@gmail.com",
+    "menghengchhay@gmail.com",
+    "yith11@gmail.com",
+    "nickypiseth@gmail.com",
   ];
 
   //fetch from firebase
@@ -76,9 +82,9 @@ const App = () => {
       return;
     }
 
-    if (blockedEmails.includes(email)) {
+    if (!allowedEmails.includes(email)) {
       alert(
-        "You got banned!!! You know why? Because the Dev don't know you personally. 🤣"
+        'I don\'t think you sign up with us yet. Send us an email "davidlee239900@gmail.com" to sign up '
       );
       return;
     }
