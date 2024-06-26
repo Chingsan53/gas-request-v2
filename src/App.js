@@ -150,10 +150,7 @@ const App = () => {
             <img src="./img/gas-request.png" className="logo" alt="logo" />
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
-              <span>
-                Note: You will be banned if we know that you are sharing the
-                access code.
-              </span>
+              
               <button className="button-7" onClick={handleShow}>
                 {!showForm ? "REQUEST" : "CLOSE"}
               </button>
