@@ -104,7 +104,7 @@ const App = () => {
 
     if (tokens <= 0) {
       alert(
-        "You have no tokens left. Please wait until they reset next month. You can also buy more 'Tokens' by sending us an email: 'davidlee239900@gmail.com'"
+        "You have no tokens left. Please wait until they reset next month. Each token costs $4. If you want to buy more token, Venmo: Chingsan-Ly-1 and include your 'Email Address' in the description. Thanks"
       );
       return;
     }
