@@ -18,27 +18,26 @@ const App = () => {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [canSubmit, setCanSubmit] = useState(true);
-  const [accessCode, setAccessCode] = useState("");
-  const [isAccessCodeValid, setIsAccessCodeValid] = useState(false);
+  const [tokens, setTokens] = useState(0);
   const [email, setEmail] = useState("");
 
   const form = useRef();
 
-  // Lisf of blocked emails
-  const allowedEmails = [
-    // "johnathan.ashley@alpha-grid.com",
-    // "baxterchen8@aol.com",
-    // "skykeller80@gmail.com",
-    "lychingsan567@gmail.com",
-    "dalivapiseth@gmail.com",
-    "htinaungkyaw486@gmail.com",
-    "menghongchhay@gmail.com",
-    "menghengchhay@gmail.com",
-    "yith11@gmail.com",
-    "nickypiseth@gmail.com",
-    "lychingsan123@gmail.com",
-    "bunkheang.h@outlook.com",
-  ];
+  // // Lisf of blocked emails
+  // const allowedEmails = [
+  //   // "johnathan.ashley@alpha-grid.com",
+  //   // "baxterchen8@aol.com",
+  //   // "skykeller80@gmail.com",
+  //   "lychingsan567@gmail.com",
+  //   "dalivapiseth@gmail.com",
+  //   "htinaungkyaw486@gmail.com",
+  //   "menghongchhay@gmail.com",
+  //   "menghengchhay@gmail.com",
+  //   "yith11@gmail.com",
+  //   "nickypiseth@gmail.com",
+  //   "lychingsan123@gmail.com",
+  //   "bunkheang.h@outlook.com",
+  // ];
 
   //fetch from firebase
   useEffect(() => {
@@ -58,6 +57,30 @@ const App = () => {
     fetchData();
   }, []);
 
+  //Fetch allowed Emails and tokens
+  useEffect(() => {
+    const fetchEmailTokens = async () => {
+      try {
+        if (email) {
+          const q = query(
+            collection(db, "allowedEmails"),
+            where("email", "==", email)
+          );
+          const querySnapshot = await getDocs(q);
+          if (!querySnapshot.empty) {
+            const allowedEmailDoc = querySnapshot.docs[0];
+            setTokens(allowedEmailDoc.data().tokens);
+          } else {
+            setTokens(0);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching email tokens: ", error);
+      }
+    };
+    fetchEmailTokens();
+  }, [email]);
+
   //User cooldown store in local storage
   useEffect(() => {
     const lastSubmissionTime = localStorage.getItem("lastSubmissionTime");
@@ -70,11 +93,19 @@ const App = () => {
     }
   }, []);
 
-  const sendEmail = (e) => {
+  // Set Email and Update Tokens
+  const sendEmail = async (e) => {
     e.preventDefault();
 
     if (!canSubmit) {
       alert("You can only submit one request every 24 hours.");
+      return;
+    }
+
+    if (tokens <= 0) {
+      alert(
+        "You have no tokens left. Please wait until they reset next month. You can also buy more 'Tokens' by sending us an email: 'davidlee239900@gmail.com'"
+      );
       return;
     }
 
@@ -84,34 +115,52 @@ const App = () => {
       return;
     }
 
-    if (!allowedEmails.includes(email)) {
+    // Validate email against allowed emails in Firestore
+    const q = query(
+      collection(db, "allowedEmails"),
+      where("email", "==", email)
+    );
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
       alert(
-        'I don\'t think you sign up with us yet. Send us an email "davidlee239900@gmail.com" to sign up '
+        'You are not registered. Please contact "davidlee239900@gmail.com" to sign up.'
       );
       return;
     }
 
-    emailjs
-      .sendForm(
-        "service_p30k3pz",
-        "template_gtnk03c",
-        form.current,
-        "myW_exMrmnw4SGeeX"
-      )
-      .then(
-        async (result) => {
-          console.log(result.text);
+    try {
+      const allowedEmailDoc = querySnapshot.docs[0];
+      const newTokens = allowedEmailDoc.data().tokens - 1;
+      //update tokens in Firestore after successful form submit
+      await updateDoc(doc(db, "allowedEmails", allowedEmailDoc.id), {
+        tokens: newTokens,
+      });
 
+      setTokens(newTokens);
+      emailjs
+        .sendForm(
+          "service_p30k3pz",
+          "template_gtnk03c",
+          form.current,
+          "myW_exMrmnw4SGeeX"
+        )
+        .then(async (result) => {
+          console.log(result.text);
           const docRef = doc(db, "phoneNumbers", selectedItem.id);
-          await updateDoc(docRef, { sent: true });
+          await updateDoc(doc(db, "phoneNumbers", selectedItem.id), {
+            sent: true,
+          });
           setIsSubmitted(true);
           localStorage.setItem("lastSubmissionTime", Date.now().toString());
           setCanSubmit(false);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+        })
+        .catch((error) => {
+          console.error("Error sending email:", error);
+        });
+    } catch (error) {
+      console.error("Error updating tokens:", error);
+      //Handle error updating tokens (rollback or inform user)
+    }
   };
 
   const handleShow = () => {
@@ -151,7 +200,11 @@ const App = () => {
             <img src="./img/gas-request.png" className="logo" alt="logo" />
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
-              
+              <span>
+                <strong>Important: </strong>Each user receives 4 tokens per
+                month, which are reset at the beginning of each month.
+              </span>
+
               <button className="button-7" onClick={handleShow}>
                 {!showForm ? "REQUEST" : "CLOSE"}
               </button>
@@ -188,12 +241,8 @@ const App = () => {
         )}
         {isSubmitted && (
           <p>
-            Congratulations! Your form has been submitted. Please kindly request
-            only 1 reward number per 48 hours. Thank you.{" "}
-            <span>
-              If you don't receive the code in 5 minutes, maybe your access code
-              is incorrect.
-            </span>
+            Congratulations! Your form has been submitted.{" "}
+            <span>Token left: {tokens}</span>
           </p>
         )}
         {!canSubmit && (
@@ -202,10 +251,6 @@ const App = () => {
               You have submitted a form recently. Please wait 48 hours after you
               last submitted before submitting the form again.
             </strong>{" "}
-            <span>
-              If you don't receive the code in 5 minutes, maybe your access code
-              is incorrect.
-            </span>
           </p>
         )}
       </>
