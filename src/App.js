@@ -22,22 +22,14 @@ const App = () => {
   const [email, setEmail] = useState("");
 
   const form = useRef();
+  // Automatically refresh the page
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.reload();
+    }, 10 * 60 * 1000); // 10 minutes in milliseconds
 
-  // // Lisf of blocked emails
-  // const allowedEmails = [
-  //   // "johnathan.ashley@alpha-grid.com",
-  //   // "baxterchen8@aol.com",
-  //   // "skykeller80@gmail.com",
-  //   "lychingsan567@gmail.com",
-  //   "dalivapiseth@gmail.com",
-  //   "htinaungkyaw486@gmail.com",
-  //   "menghongchhay@gmail.com",
-  //   "menghengchhay@gmail.com",
-  //   "yith11@gmail.com",
-  //   "nickypiseth@gmail.com",
-  //   "lychingsan123@gmail.com",
-  //   "bunkheang.h@outlook.com",
-  // ];
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, []);
 
   //fetch from firebase
   useEffect(() => {
