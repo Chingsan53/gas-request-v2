@@ -193,7 +193,7 @@ const App = () => {
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
               <span>
-                <strong>Important: </strong>Each user receives 4 tokens per
+                <strong>Important: </strong>Each "registered user" receives 4 tokens per
                 month, which are reset at the beginning of each month.
               </span>
 
