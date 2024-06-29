@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       window.location.reload();
-    }, 10 * 60 * 1000); // 10 minutes in milliseconds
+    }, 5 * 60 * 1000); // 5 minutes in milliseconds
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);
@@ -79,7 +79,7 @@ const App = () => {
     if (lastSubmissionTime) {
       const timeDiff =
         Date.now() - new Date(parseInt(lastSubmissionTime)).getTime();
-      if (timeDiff < 172800000) {
+      if (timeDiff < 300000) {
         setCanSubmit(false);
       }
     }
@@ -193,8 +193,9 @@ const App = () => {
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
               <span>
-                <strong>Important: </strong>Each "registered user" receives 4 tokens per
-                month, which are reset at the beginning of each month.
+                <strong>Important: </strong>Each "registered user" receives 4
+                tokens per month, which are reset at the beginning of each
+                month.
               </span>
 
               <button className="button-7" onClick={handleShow}>
@@ -240,8 +241,8 @@ const App = () => {
         {!canSubmit && (
           <p>
             <strong>
-              You have submitted a form recently. Please wait 48 hours after you
-              last submitted before submitting the form again.
+              You have submitted a form recently. Please wait 5 minutes after
+              you last submitted before submitting the form again.
             </strong>{" "}
           </p>
         )}
