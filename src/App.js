@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       window.location.reload();
-    }, 5 * 60 * 1000); // 5 minutes in milliseconds
+    }, 2 * 60 * 1000); // 2 minutes in milliseconds
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);
@@ -79,7 +79,7 @@ const App = () => {
     if (lastSubmissionTime) {
       const timeDiff =
         Date.now() - new Date(parseInt(lastSubmissionTime)).getTime();
-      if (timeDiff < 300000) {
+      if (timeDiff < 120000) {
         setCanSubmit(false);
       }
     }
@@ -241,7 +241,7 @@ const App = () => {
         {!canSubmit && (
           <p>
             <strong>
-              You have submitted a form recently. Please wait 5 minutes after
+              You have submitted a form recently. Please wait 2 minutes after
               you last submitted before submitting the form again.
             </strong>{" "}
           </p>
