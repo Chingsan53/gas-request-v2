@@ -193,9 +193,10 @@ const App = () => {
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
               <span>
-                <strong>Important: </strong>Each "registered user" receives 4
-                tokens per month, which are reset at the beginning of each
-                month.
+                <strong>Important: </strong>Friends & Family: Get up to 4 free
+                tokens monthly, reset at the start of each month. Want more?
+                Venmo $4 per token to Chingsan-Ly-1 with your email address in
+                the description.
               </span>
 
               <button className="button-7" onClick={handleShow}>
