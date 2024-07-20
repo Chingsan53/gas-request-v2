@@ -195,8 +195,7 @@ const App = () => {
               <span>
                 <strong>Important: </strong>Friends & Family: Get up to 4 free
                 tokens monthly, reset at the start of each month. Want more?
-                Venmo $4 per token to Chingsan-Ly-1 with your email address in
-                the description.
+                Venmo $4 per token.
               </span>
 
               <button className="button-7" onClick={handleShow}>
