@@ -96,7 +96,7 @@ const App = () => {
 
     if (tokens <= 0) {
       alert(
-        "You have no tokens left. Please wait until they reset next month. Each token costs $4. If you want to buy more token, Venmo: Chingsan-Ly-1 and include your 'Email Address' in the description. Thanks"
+        "You have no tokens left. Please wait until they reset next month. Thanks"
       );
       return;
     }
