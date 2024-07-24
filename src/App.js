@@ -96,7 +96,7 @@ const App = () => {
 
     if (tokens <= 0) {
       alert(
-        "You have no tokens left. Please wait until they reset next month. Thanks"
+        "You have no tokens left. Please wait until they reset next month. Cashapp $Chevvi567 and include your email address on the note to buy. Price: $4 per token. Thanks"
       );
       return;
     }
@@ -195,7 +195,7 @@ const App = () => {
               <span>
                 <strong>Important: </strong>Friends & Family: Get up to 4 free
                 tokens monthly, reset at the start of each month. Want more?
-                Venmo $4 per token.
+                Cashapp: $Chevvi567 to buy. Price: $4 per token.
               </span>
 
               <button className="button-7" onClick={handleShow}>
