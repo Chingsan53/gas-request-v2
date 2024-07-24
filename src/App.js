@@ -96,7 +96,7 @@ const App = () => {
 
     if (tokens <= 0) {
       alert(
-        "You have no tokens left. Please wait until they reset next month. Cashapp $Chevvi567 and include your email address on the note to buy. Price: $4 per token. Thanks"
+        "You have no tokens left. Please wait until they reset next month. Cashapp $Chevvi567 and include your email address in the note to buy. Price: $4 per token. Thanks"
       );
       return;
     }
