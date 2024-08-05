@@ -96,7 +96,7 @@ const App = () => {
 
     if (tokens <= 0) {
       alert(
-        "You have no tokens left. Please wait until they reset next month. Cashapp $Chevvi567 and include your email address in the note to buy. Price: $4 per token. Thanks"
+        "You have no tokens left. Cashapp $Chevvi567 and include your email address in the description to buy. Price: $4 per token. Thanks"
       );
       return;
     }
@@ -192,11 +192,10 @@ const App = () => {
             <img src="./img/gas-request.png" className="logo" alt="logo" />
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
-              <span>
-                <strong>Important: </strong>Friends & Family: Get up to 4 free
-                tokens monthly, reset at the start of each month. Want more?
-                Cashapp: $Chevvi567 to buy. Price: $4 per token.
-              </span>
+              <p>
+                Cashapp: $Chevvi567 and include your email in the description to
+                buy the token. Price: $4 per token.
+              </p>
 
               <button className="button-7" onClick={handleShow}>
                 {!showForm ? "REQUEST" : "CLOSE"}

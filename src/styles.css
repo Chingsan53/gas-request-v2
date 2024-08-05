@@ -21,7 +21,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: auto;
   width: 300px;
   background-color: #9bb0c1;
   border: 2px;
