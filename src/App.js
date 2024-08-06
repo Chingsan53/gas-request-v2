@@ -193,11 +193,14 @@ const App = () => {
             <div className="title">
               <h2>COUPON $1 Off/Gallon</h2>
               <p>
-                Cashapp: $Chevvi567 and include your email in the description to
-                buy the token. Price: $4 per token.
+                {/* Cashapp: $Chevvi567 and include your email in the description to
+                buy the token. Price: $4 per token. */}
+                Our app has encountered an error where accounts are not
+                recognized as valid at the pump. We are working to fix this
+                issue as soon as possible. Thank you for your patience.
               </p>
 
-              <button className="button-7" onClick={handleShow}>
+              <button className="button-7" /*onClick={handleShow}*/>
                 {!showForm ? "REQUEST" : "CLOSE"}
               </button>
             </div>
