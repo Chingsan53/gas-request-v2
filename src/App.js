@@ -195,11 +195,13 @@ const App = () => {
               <p>
                 {/* Cashapp: $Chevvi567 and include your email in the description to
                 buy the token. Price: $4 per token. */}
-                The app is no longer working. Please contact the developer directly to get the reward number.
+                The app is no longer working. Please contact the developer
+                directly to get the reward number.
               </p>
 
               <button className="button-7" /*onClick={handleShow}*/>
-                {!showForm ? "REQUEST" : "CLOSE"}
+                {/* {!showForm ? "REQUEST" : "CLOSE"} */}
+                {!showForm ? "LEGACY MODEL" : "CLOSE"}
               </button>
             </div>
           </div>
